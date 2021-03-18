@@ -1,16 +1,17 @@
 {
    "$schema":"https://specs.frictionlessdata.io/schemas/table-schema.json",
-   "name":"objets-importants",
-   "title":"Schéma des objets importants",
-   "description":"Spécification du fichier d'échange relatif aux objets importants gérés par les collectivités.",
+   "name":"sdirve",
+   "title":"Schéma directeur des infrastructures de recharge pour véhicules électriques et hybrides rechargeables",
+   "description":"Spécification du fichier d'échange relatif aux schéma directeur des infrastructures de recharge pour véhicules électriques et hybrides rechargeables.",
    "keywords":[
-      "objets",
-      "autre-tag"
+      "irve",
+      "sdirve",
+      "véhicules électriques",
+      "point de charge"
    ],
    "countryCode":"FR",
-   "homepage":"https://github.com/mon-orga/schema-objets-importants",
-   "path":"https://github.com/mon-orga/schema-objets-importants/raw/v0.1.1/schema.json",
-   "image":"https://github.com/mon-orga/schema-objets-importants/raw/v0.1.1/irve.png",
+   "homepage":"https://github.com/etalab/schema-sdirve",
+   "path":"https://github.com/etalab/schema-sdirve/raw/v0.1.0/schema.json",
    "licenses":[
       {
          "title":"Etalab Licence Ouverte 2.0",
@@ -26,69 +27,224 @@
       }
    ],
    "sources":[
-      {
-         "title":"Arrêté du 12 janvier 2017 relatif aux objets importants",
-         "path":"https://beta.legifrance.gouv.fr/codes/id/LEGISCTA000031367685/2020-05-25"
-      }
    ],
-   "created":"2018-06-29",
-   "lastModified":"2019-05-06",
-   "version":"0.1.1",
+   "created":"2021-03-18",
+   "lastModified":"2021-03-18",
+   "version":"0.1.0",
    "contributors":[
       {
-         "title":"John Smith",
-         "email":"john.smith@etalab.gouv.fr",
+         "title":"Geoffrey Aldebert",
+         "email":"geoffrey.aldebert@data.gouv.fr",
          "organisation":"Etalab",
          "role":"author"
       },
       {
-         "title":"Jane Doe",
-         "email":"jane.doe@example.com",
-         "organisation":"Association très importante",
-         "role":"contributor"
+          "title": "Julien Barreteau",
+          "email": "julien.barreteau@developpement-durable.gouv.fr",
+          "organisation": "DGEC",
+          "role": "contributor"
       }
    ],
    "fields":[
       {
-         "name":"id",
-         "description":"Un identifiant unique de l'objet.",
-         "example":"42",
+         "name":"code_commune_insee",
+         "description":"Code INSEE de chacune des communes couvertes par le territoire du SDIRVE, avec une ligne par commune",
+         "example":"23150",
+         "type":"string",
+         "constraints":{
+            "required":true,
+            "pattern":"^([013-9]\\d|2[AB1-9])\\d{3}$"
+         }
+      },
+      {
+         "name":"code_iris_insee",
+         "description":"Code de chaque IRIS couvert par le territoire du SDIRVE, avec une ligne par IRIS. Si vous ne descendez pas au niveau de l'IRIS mais seulement au niveau de la commune, ne pas remplir ce champs.",
+         "example":"2A0040101",
+         "type":"string",
+         "constraints":{
+            "required":false,
+            "pattern":"^([013-9]\\d|2[AB1-9])\\d{7}$"
+         }
+      },
+      {
+         "name":"existant_nb_pdc_interval_1",
+         "description":"Nombre de points de charge d'une puissance unitaire ≤ 7,4 kVA",
+         "example":"12",
          "type":"integer",
          "constraints":{
             "required":true,
-            "minimum":1
+            "minimum":0
          }
       },
       {
-         "name":"date_creation",
-         "description":"La date de création de l'objet, au format ISO 8601 AAAA-MM-DD.",
-         "example":"2020-02-27",
-         "type":"date",
+         "name":"existant_nb_pdc_interval_2",
+         "description":"Nombre de points de charge d'une puissance unitaire > 7,4 kVA et ≤ 22  kVA",
+         "example":"12",
+         "type":"integer",
          "constraints":{
-            "required":true
+            "required":true,
+            "minimum":0
          }
       },
       {
-         "name":"nom",
-         "description":"Le nom de l'objet.",
-         "example":"Brouette",
-         "type":"string",
+         "name":"existant_nb_pdc_interval_3",
+         "description":"Nombre de points de charge d'une puissance unitaire > 22 kVA et < 150  kVA",
+         "example":"12",
+         "type":"integer",
          "constraints":{
-            "required":true
+            "required":true,
+            "minimum":0
          }
       },
       {
-         "name":"classification",
-         "description":"Classification de l'objet.",
-         "example":"Classification A",
-         "type":"array",
-         "arrayItem":{
-            "type": "string",
-            "constraints": {
-               "enum": ["Classification A", "Classification B", "Classification C"]
-            }
+         "name":"existant_nb_pdc_interval_4",
+         "description":"Nombre de points de charge d'une puissance unitaire ≥ 150 kVA",
+         "example":"12",
+         "type":"integer",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"existant_nb_moyen_recharges",
+         "description":"Nombre moyen de sessions de recharges quotidiennes sur les 22 mois précédant l'élaboration du diagnostic",
+         "example":"89",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"existant_duree_moyenne_recharges",
+         "description":"Durée moyenne (en minutes) des sessions de recharge réussies en minutes sur les 22 mois précédant l'élaboration du diagnostic.",
+         "example":"120",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"existant_taux_disponibilite_moyen",
+         "description":"Taux de disponibilité moyen sur les 22 mois précédant l'élaboration du diagnostic",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"evolution_nb_pdc_interval_1",
+         "description":"Nombre de points de charge ouverts au public induits par la mise en œuvre de dispositions législatives et réglementaires ou par des projets d'implantation, d'une puissance unitaire ≤ 7,4 kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"evolution_nb_pdc_interval_2",
+         "description":"Nombre de points de charge ouverts au public induits par la mise en œuvre de dispositions législatives et réglementaires ou par des projets d'implantation, d'une puissance unitaire > 7,4 et ≤ 22  kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"evolution_nb_pdc_interval_3",
+         "description":"Nombre de points de charge ouverts au public induits par la mise en œuvre de dispositions législatives et réglementaires ou par des projets d'implantation, d'une puissance unitaire > 22 et < 150  kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"evolution_nb_pdc_interval_4",
+         "description":"Nombre de points de charge ouverts au public induits par la mise en œuvre de dispositions législatives et réglementaires ou par des projets d'implantation, d'une puissance unitaire ≥ 150  kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"estimation_vehicules_particuliers_electriques",
+         "description":"Estimation du parc de véhicules particuliers électriques à l'échéance opérationnelle",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"estimation_vehicules_particuliers_hybrides_rechargeables",
+         "description":"Estimation du parc de véhicules particuliers hybrides rechargeables à l'échéance opérationnelle",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"objectif_nb_pdc_interval_1",
+         "description":"Nombre de points de charge d'une puissance unitaire ≤ 7,4 kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"objectif_nb_pdc_interval_2",
+         "description":"Nombre de points de charge d'une puissance unitaire > 7,4 kVA et ≤ 22  kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"objectif_nb_pdc_interval_3",
+         "description":"Nombre de points de charge d'une puissance unitaire > 22 kVA et < 150  kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"objectif_nb_pdc_interval_4",
+         "description":"Nombre de points de charge d'une puissance unitaire ≥ 150 kVA",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
+         }
+      },
+      {
+         "name":"objectif_nb_total_stations",
+         "description":"Nombre total de stations",
+         "example":"67.5",
+         "type":"number",
+         "constraints":{
+            "required":true,
+            "minimum":0
          }
       }
-   ],
-   "primaryKey":"id"
+   ]
 }
