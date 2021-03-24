@@ -43,6 +43,12 @@
           "email": "julien.barreteau@developpement-durable.gouv.fr",
           "organisation": "DGEC",
           "role": "contributor"
+      },
+      {
+          "title": "Sophie Peng-Casavecchia",
+          "email": "sophie.peng-casavecchia@developpement-durable.gouv.fr",
+          "organisation": "DGITM",
+          "role": "contributor"
       }
    ],
    "fields":[
