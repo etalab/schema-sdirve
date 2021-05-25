@@ -402,6 +402,16 @@
             "required":false,
             "minimum":0
          }
+      },
+      {
+        "name":"url_sdirve",
+        "description":"Adresse URL où le SDIRVE de la collectivité peut être téléchargé.",
+        "example":"https://www.exemple.fr/stationnementrepublique/",
+        "type":"string",
+        "format":"uri",
+        "constraints":{
+          "required":false
+        }
       }
    ]
 }
