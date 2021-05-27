@@ -1,64 +1,54 @@
-# Template de départ pour Table Schema
+# Schéma directeur des Infrastructures pour de recharges pour véhicules électriques
 
-Ce dépôt contient les fichiers nécessaires pour démarrer la création d'un dépôt pour un schéma [Table Schema](https://specs.frictionlessdata.io/table-schema/).
+Afin d’accélérer le déploiement des IRVE ouvertes au public et d’en assurer la cohérence territoriale, l’article 68 de la loi d’orientation des mobilités prévoit la possibilité, pour les collectivités ou établissements publics, de réaliser un schéma directeur de développement des IRVE. 
 
-## Utiliser ce template
+Il s’agit d’un dispositif facultatif qui donne à la collectivité un rôle de « chef d’orchestre » du développement de l’offre de recharge sur son territoire, pour aboutir à une offre coordonnée entre les maîtres d’ouvrage publics et privés, cohérente avec les politiques locales de mobilité et adaptée aux besoins.
 
-- Si vous créez votre dépôt sur GitHub, il vous suffit d'appuyer sur le bouton vert "Use this template". Consultez [la documentation](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) pour plus d'infos ;
-- Si votre projet sera hébergé ailleurs (par exemple Gitlab), vous pouvez cloner ce répertoire ou télécharger les fichiers correspondants. Utilisez le bouton "Clone or download".
+Ce dispositif est encadré par plusieurs textes règlementaires:
+- [Le décret n° 2021-565 du 10 mai 2021](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043490106) relatif aux schémas directeurs de développement des infrastructures de recharges ouvertes au public pour les véhicules électriques et les véhicules hybrides rechargeables qui décrit le contenu détaillé du schéma directeur
+- [L’arrêté du 10 mai 2021](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043490176/) pris en application des articles R. 353-5-4, R. 353-5-6 et R. 353-5-9 du code de l'énergie qui définit les modalités de publication des principales données de diagnostic et des objectifs opérationnels du schéma directeur 
+- [Le décret n° 2021-566 du 10 mai 2021](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043490129) relatif à la fourniture d'informations d'usage des infrastructures de recharge ouvertes au public pour les véhicules électriques et les véhicules hybrides rechargeables  par les opérateurs concernés dans le cadre de la réalisation d’un schéma directeur
 
-## Fichiers disponibles
+Le présent schéma de données doit être utilisé au moment de la finalisation du schéma directeur, à deux reprises : 
 
-Ce dépôt contient un ensemble de fichiers utiles pour un dépôt d'un schéma [Table Schema](https://specs.frictionlessdata.io/table-schema/).
+## 1. Validation par le préfet
 
-- [`CHANGELOG.md`](CHANGELOG.md) contient la liste des changements entre les différentes versions de votre schéma ;
-- [`exemple-valide.csv`](exemple-valide.csv) est un fichier CSV d'exemple conforme par rapport au schéma décrit dans `schema.json`  ;
-- [`LICENSE.md`](LICENSE.md) est le fichier de licence du dépôt. Nous recommandons d'utiliser la [Licence Ouverte](https://www.etalab.gouv.fr/licence-ouverte-open-licence), cette licence est recommandée par l'administration française pour le partage de données et de documents ;
-- [`README.md`](README.md) est le fichier que vous lisez actuellement. À terme, il devra présenter votre schéma ;
-- [`requirements.txt`](requirements.txt) liste les dépendances Python nécessaires pour effectuer des tests en intégration continue sur votre dépôt ;
-- [`schema.json`](schema.json) est le schéma au format Table Schema.
+Conformément à l’article R. 353-5-6 du Code de l’énergie précisé par l’arrêté du 10 mai 2021, après une première adoption, le projet de schéma directeur est transmis au préfet de département, accompagné d’indicateurs de synthèse relatifs au diagnostic et aux objectifs opérationnels. 
 
-### Intégration continue
+Ces indicateurs sont transmis sous forme de fichier au format CSV, conformément au schéma de données publié sur cette page.
 
-Ce dépôt est configuré pour utiliser de l'intégration continue, si vous utilisez GitHub. À chaque commit, une suite de tests sera lancée via [GitHub Actions](https://github.com/features/actions) afin de vérifier :
+Ils comprennent : 
 
-- que votre schéma est valide à la spécification Table Schema ;
-- que vos fichiers d'exemples sont conformes au schéma.
+**L’état des lieux de l'existant :**
+- nombre de points de charge (par catégorie de puissance) ouverts au public ; 
+- indicateurs d'usage des points de charge, basés sur les données récoltées en application du décret n° 2021-566  :
+    - nombre moyen de sessions de recharge quotidiennes sur les 24 mois précédant l’élaboration du diagnostic ;
+    - durée moyenne des sessions de recharge réussies en minutes sur les 24 mois précédant l’élaboration du diagnostic ;
+    - taux de disponibilité moyen sur les 24 mois précédant l’élaboration du diagnostic.
 
-Si vous n'utilisez pas GitHub, vous pouvez lancer ces tests sur votre machine ou sur un autre service d'intégration continue comme Gitlab CI, Jenkins, Circle CI, Travis etc. Consultez la configuration utilisée dans [`.github/workflows/test.yml`](.github/workflows/test.yml).
+**L’estimation de l'offre ouverte au public** dont le développement est prévu indépendamment du schéma directeur ;
 
-Localement, voici la procédure à suivre pour installer l'environnement de test et lancer les tests :
+**L’estimation du parc** (VP a minima) électrique à l'échéance opérationnelle, en distinguant les véhicules électriques et les véhicules hybrides rechargeables.
 
-```bash
-# Création d'un environnement virtuel en Python 3
-python3 -m venv venv
-source venv/bin/activate
+S’agissant des objectifs opérationnels, il s’agira de renseigner le nombre de points de charge, au total et par catégorie de puissance unitaire :
+- supérieur ou égal à 7,4 kVA
+- supérieur à 7,4 kVA et inférieur ou égal à 22 kVA 
+- supérieur à 22kVA et inférieur à 150 kVA
+- supéieur ou égal à 150 kVA	
 
-# Installation des dépendances
-pip install -r requirements.txt
+Au sein des catégories de puissance unitaires, le nombre de points de charge pourra être décliné optionnellement en fonction de leur usage principal (résidentiel, professionnel, occasionnel / transit).
 
-# Test de la validité du schéma
-frictionless validate --type schema schema.json
+L’ensemble de ces données aura une précision communale a minima, avec la possibilité pour les établissements publics qui le souhaitent de déclarer les données à une précision supérieure (maille IRIS).
 
-# Test de la conformité des fichiers d'exemples
-frictionless validate --schema schema.json exemple-valide.csv
-```
-
-## Étapes à suivre
-
-Nous détaillons ci-dessous les étapes que nous vous conseillons de suivre après avoir créé votre dépôt Git, tout en utilisant les fichiers d'exemples.
-
-- [ ] Décrire votre schéma dans le fichier `schema.json` en respectant la spécification Table Schema. Le fichier d'exemple comprend des valeurs d'exemples pour toutes les métadonnées possibles. Notez que les champs d'exemple ne comprennent qu'une petite partie des types, formats et contraintes disponibles, référez-vous à [la documentation](https://specs.frictionlessdata.io/table-schema/#types-and-formats) pour toutes les valeurs possibles. Si certaines métadonnées ne sont pas nécessaires pour votre projet, vous pouvez les supprimer. Pour vérifier que votre schéma est conforme, vous pouvez utiliser l'outil [tableschema](https://pypi.org/project/tableschema/) en ligne de commande : `tableschema validate schema.json`
-- [ ] Modifier le fichier d'exemple CSV avec des données conforme à votre schéma. L'outil [frictionless](https://pypi.org/project/frictionless/) permet de vérifier que vos fichiers sont conformes au schéma en ligne de commande `frictionless validate --schema schema.json exemple-valide.csv`
-- [ ] Modifier le fichier [`CHANGELOG.md`](CHANGELOG.md) pour indiquer la publication initiale
-- [ ] Modifier le fichier [`README.md`](README.md), en supprimant tout son contenu tout d'abord. Au sein de plusieurs paragraphes, vous indiquerez le contexte, les modalités de production des données, le cadre juridique, la finalité, les cas d’usage etc. Consultez plusieurs schémas sur [schema.data.gouv.fr](https://schema.data.gouv.fr) pour découvrir quelles informations sont pertinentes à indiquer
-- [ ] Vérifier que la licence ouverte vous convient. Si vous devez utiliser une autre licence, modifiez le fichier [`LICENSE.md`](LICENSE.md) et indiquez la licence dans le fichier [`schema.json`](schema.json), dans la clé `licenses`
+L’ensemble de ces données ont pour objectif d’éclairer les objectifs fixés à l’échéance opérationnelle. L’analyse réalisée par les services de l’État quant à la pertinence et au réalisme des objectifs opérationnels s’appuiera en effet sur le projet de schéma directeur et en particulier les données de diagnostic précitées. 
 
 
-## Documentation
+## 2. Adoption définitive et publication des données en open data
 
-Pour vous aider dans la construction de votre dépôt, nous vous recommandons de vous référer à :
+Après avis positif du préfet, ou sans réponse dans un délai de deux mois après transmission initiale, le schéma directeur est validé. Dans le cas contraire, l’établissement public modifie son projet de schéma directeur et le soumet à une nouvelle délibération.
 
-- [Le guide à destination des producteurs de schéma](https://guides.etalab.gouv.fr/producteurs-schemas/)
-- [La documentation de schema.data.gouv.fr](https://schema.data.gouv.fr)
-- [La spécification Table Schema](https://specs.frictionlessdata.io/table-schema/)
+Puis les données visées seront également publiées en open data par la collectivité sur data.gouv.fr dans un délai de deux mois suivant l’adoption définitive, toujours conformément au schéma de données publié sur cette page.  
+
+À noter, ces informations seront automatiquement agrégées sur le site data.gouv.fr pour permettre **un suivi national des schémas directeurs**. 
+
+En complément, le schéma directeur adopté par l’établissement public doit être rendu public ; la mise en ligne du document sous un format PDF sur le site de l’établissement public, pour un téléchargement libre, est très fortement recommandée ; le lien de téléchargement figure parmi les données à renseigner dans le schéma de données publié sur cette page.
