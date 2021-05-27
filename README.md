@@ -9,6 +9,21 @@ Ce dispositif est encadré par plusieurs textes règlementaires:
 - [L’arrêté du 10 mai 2021](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043490176/) pris en application des articles R. 353-5-4, R. 353-5-6 et R. 353-5-9 du code de l'énergie qui définit les modalités de publication des principales données de diagnostic et des objectifs opérationnels du schéma directeur 
 - [Le décret n° 2021-566 du 10 mai 2021](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043490129) relatif à la fourniture d'informations d'usage des infrastructures de recharge ouvertes au public pour les véhicules électriques et les véhicules hybrides rechargeables  par les opérateurs concernés dans le cadre de la réalisation d’un schéma directeur
 
+## Création d’un fichier de données conforme
+
+Les données collectées doivent respecter un formalisme particulier (schéma de données) décrit sur la [section documentation de cette page](https://schema.data.gouv.fr/etalab/schema-irve/latest/documentation.html).
+
+Les données sont à remplir au format CSV, encodage UTF-8.
+
+Pour faciliter le remplissage des données, Etalab met à disposition un générateur CSV conforme au schéma de données, vous permettant de remplir les différents champs demandés. Cet outil vous permet de vous assurer que les données que vous remplissez sont au bon format. Pour l’utiliser, rendez-vous sur publier.etalab.studio, vous pourrez alors publier votre fichier à partir :
+- d’un fichier csv déjà existant. (vous pouvez partir de [ce fichier exemple](https://raw.githubusercontent.com/etalab/schema-sdirve/v0.1.0/exemple-valide.csv)).
+- d’un formulaire
+- d’un tableur (encore en expérimentation)
+
+Une fois vos données chargées ou remplies, un formulaire vous proposera de les publier sur data.gouv.fr
+
+Plusieurs solutions existent pour générer ce fichier CSV.
+
 Le présent schéma de données doit être utilisé au moment de la finalisation du schéma directeur, à deux reprises : 
 
 ## 1. Validation par le préfet
