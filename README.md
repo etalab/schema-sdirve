@@ -11,12 +11,12 @@ Ce dispositif est encadré par plusieurs textes règlementaires:
 
 ## Création d’un fichier de données conforme
 
-Les données collectées doivent respecter un formalisme particulier (schéma de données) décrit sur la [section documentation de cette page](https://schema.data.gouv.fr/etalab/schema-irve/latest/documentation.html).
+Les données collectées doivent respecter un formalisme particulier (schéma de données) décrit sur la [section documentation de cette page](https://schema.data.gouv.fr/etalab/schema-sdirve/latest/documentation.html).
 
 Les données sont à remplir au format CSV, encodage UTF-8.
 
 Pour faciliter le remplissage des données, Etalab met à disposition un générateur CSV conforme au schéma de données, vous permettant de remplir les différents champs demandés. Cet outil vous permet de vous assurer que les données que vous remplissez sont au bon format. Pour l’utiliser, rendez-vous sur publier.etalab.studio, vous pourrez alors publier votre fichier à partir :
-- d’un fichier csv déjà existant. (vous pouvez partir de [ce fichier exemple](https://raw.githubusercontent.com/etalab/schema-sdirve/v0.1.0/exemple-valide.csv)).
+- d’un fichier csv déjà existant. (vous pouvez partir de [ce fichier exemple](https://www.data.gouv.fr/fr/datasets/fichier-exemple-schema-directeur-des-infrastructures-de-recharges-pour-vehicules-electriques/)).
 - d’un formulaire
 - d’un tableur (encore en expérimentation)
 
